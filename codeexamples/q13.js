@@ -1,0 +1,123 @@
+// Construct new parent class Car 
+class Car {
+    // Use the class constructor function to set up the expected properties and accept variable arguments when instantiating a new class instance. 
+    // The value of 'brand' will be provided as an argument when when creating a new class instance.
+  constructor(brand) {
+    // 'this' keyword must be used to specify that it is referencing a property, element or method within the class object
+    //  This line creates a new key/value pair with key 'carname' and assocated value set to the value of 'brand'
+    this.carname = brand;
+  }
+    // Create a new Class method called 'present'
+    //This method can be called on every Car class instance, or any class that extends the Car class
+  present() {
+    // returns a phrase that references the carname property. Note that 'this' keyword must be used to specify it is accessing a property from within the class instance.
+    return 'I have a ' + this.carname;
+  }
+}
+
+// Define a new class Model that inherits from the Car class. In this scenario one could think of Car as a parent class and Model as a child class of Car class.
+class Model extends Car {
+    // The constructor function is called, paramters must be required paramaters from parent class (Car) as well as any further parameters needed to construct child class (Model)
+  constructor(brand, mod) {
+    // The super keyword is used to invoke the superclass constructor (Car). This gives access to the Car class constructor within the Model class constructor.
+    // by invoking super the Model class has access to the 'brand' property from the Car class constructor. 
+    super(brand);
+    // creates a key/value pair to set class key model to value of 'mod' argument
+    this.model = mod;
+  }
+    // Create a new Class method called 'show'
+    //This method that can be called on every Model class instance, or any class that extends the Model class
+  show() {
+    // This method returns a phrase. It invokes the 'present' method to construct the first part of the phrase. 
+    // The 'this' keyword must be used to acces the method from the class object. It defines the scope of 'this' object.
+    // it concatenates the first returned phrase with a string and the returned value of `this.model`.
+    return this.present() + ', it was made in ' + this.model;
+  }
+}
+
+// define an Array containing hardcoded car models
+let makes = ["Ford", "Holden", "Toyota"]
+
+// The following line of code will construct an array containing sequential numbers ranging from 1980 to 2019
+    // The Array.from() static method creates a new array from an array like object or iterable.
+        // Its first parameter is the iterable obect
+        // Its second parameter is a map function, whose first two parameters represent the current current element and the index of the current element.
+    // The first argument of Array.from() is an Array Constructor, which when passed a single integer as an argument returns an array of that length which each element initialized as 'undefineed'
+        // In this instance, 'new Array(40)' will evaluate to an array with 40 instances of of 'undefined'. 
+    // How it all works:
+        // Array.from() will iterate over an array of 40 undefined elements and for each of element will evaluate to the index value + the integer 1980
+        // Array.from() ultimately returns a shallow copy of 'new Array(40)' populated with elements ranging from 1980 to 2019, inclusive.
+ let models = Array.from(new Array(40), (x,i) => i + 1980)
+
+
+// Declare a function that will return a random integer from a given range (min, max)
+function randomIntFromInterval(min,max) { // min and max included
+    // Math.random() returns a random float greater than or equal to 0 and less than 1
+    // The span of values needed is achieved by subtracting the low range (min) from the high range (max). 
+        // 1 is then added to this number to compensate for Math.random() never returning 1.
+        // This number is then multiplied by the Random float from Math.random()
+        // Next, the low range (min) is achieved by adding it to this number, essentially shifiting all values up (min) amaunt 
+        // Finally, Math.floor() returns the base integer value, ommiting any decimal content.
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+// initialize 'for... of' loop to iterate over the models array. 
+// Because not specified with 'let' or 'const', all variables in this code block will be initialized with keyword 'var' by default
+for (model of models) {
+//   On each iteration a random make is chosen from the 'makes' array using the randomIntFromInterval function
+    // because given arguments evaluate to 0 and 2, the returned int will always be between 0 and 2, and in range of the 'makes' array length.
+  make = makes[randomIntFromInterval(0,makes.length-1)]
+
+//   Similarly, on each iteration a random model is chosen from the 'models' array using the randomIntFromInterval function
+    // because given arguments evaluate to 0 and 2, the returned int will always be between 0 and 2
+    // This may not be what the developer intended, as it is pulling models from an array of 40 elements, but will only ever access the first three elements of that array: 1980, 1981, 1982
+    // If the dev wanted to pull from all 40 elements, they could replace the second argument to randomIntFromInterval with 'models.length-1' to achieve a range from 0-39
+    model = models[randomIntFromInterval(0,makes.length-1)]
+
+//   On each iteration variable mycar will be assigned the value of a new insance of Model with the randomly chosen 'make' and 'model' values passed in as arguments to the Model constructor function.
+  mycar = new Model(make, model);
+//   On each iteration the mycar.show() method will be invoked and logged to the console, returning the constructed string as expected
+  console.log(mycar.show())
+}
+
+// Sample of expected console output:
+// I have a Holden, it was made in 1981
+// I have a Toyota, it was made in 1981
+// I have a Ford, it was made in 1981
+// I have a Holden, it was made in 1980
+// I have a Toyota, it was made in 1980
+// I have a Holden, it was made in 1980
+// I have a Ford, it was made in 1981
+// I have a Ford, it was made in 1982
+// I have a Holden, it was made in 1981
+// I have a Ford, it was made in 1981
+// I have a Holden, it was made in 1980
+// I have a Toyota, it was made in 1982
+// I have a Toyota, it was made in 1980
+// I have a Holden, it was made in 1980
+// I have a Ford, it was made in 1981
+// I have a Ford, it was made in 1982
+// I have a Ford, it was made in 1982
+// I have a Ford, it was made in 1980
+// I have a Toyota, it was made in 1982
+// I have a Toyota, it was made in 1982
+// I have a Toyota, it was made in 1981
+// I have a Toyota, it was made in 1982
+// I have a Holden, it was made in 1980
+// I have a Toyota, it was made in 1982
+// I have a Holden, it was made in 1980
+// I have a Toyota, it was made in 1980
+// I have a Toyota, it was made in 1981
+// I have a Ford, it was made in 1980
+// I have a Ford, it was made in 1980
+// I have a Ford, it was made in 1981
+// I have a Ford, it was made in 1982
+// I have a Toyota, it was made in 1980
+// I have a Holden, it was made in 1980
+// I have a Holden, it was made in 1980
+// I have a Toyota, it was made in 1981
+// I have a Toyota, it was made in 1981
+// I have a Ford, it was made in 1982
+// I have a Ford, it was made in 1982
+// I have a Holden, it was made in 1982
+// I have a Holden, it was made in 1980
