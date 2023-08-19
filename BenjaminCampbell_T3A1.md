@@ -1,5 +1,5 @@
 ## Q1: Provide an overview and description of a standard source control process for a large project
-Source control is one of the most integral parts of developing a large software project. It provides tools and protocols to modularly work on different sections of a code base without disturbing a working branch, only integrating changes when certain criteria are met and approved. When beginning a large project a central repository is established with the projects source code, assets, documentation and other related files. Depending on the projects size and workflow an individual developer will either clone or fork the required repository to begin development. A branching strategy is employed to determine how a developer will work on their tasks atomically, so as not to disturb the working production code base. A typical feature branch flow involves a developer creating a new, descriptively named, feature branch: this allows for code back-up and collaboration without disturbing the main branch. The developer will work on their feature, hot fix or other code, going through the standard stage, commit, push cycles until complete. At this stage a pull request for the branch is submitted and will be reviewed by team mates, commented on and either approved or have revisions requested. Once the pull request is approved the developers branch will be merged into the main branch, with merge conflicts being addressed if necessary. After successful merge the feature branch will be deleted to keep the repository well organized and performant.
+Source control is one of the most integral parts of developing a large software project. It can provide tools and protocols to modularly work on different sections of a code base without disturbing a working branch, only integrating changes when certain criteria are met and approved. When beginning a large project a central repository is established with the projects source code, assets, documentation and other related files. Depending on the projects size and workflow an individual developer will either clone or fork the required repository to begin development. A branching strategy is employed to determine how a developer will work on their tasks atomically, so as not to disturb the working production code base. A typical feature branch flow involves a developer creating a new, descriptively named, feature branch: this allows for code back-up and collaboration without disturbing the main branch. The developer will work on their feature, hot fix or other code, going through the standard stage, commit, push cycles until complete. At this stage a pull request for the branch is submitted and will be reviewed by team mates, commented on and either approved or have revisions requested. Once the pull request is approved the developers branch will be merged into the main branch, with merge conflicts being addressed if necessary. After successful merge the feature branch will be deleted to keep the repository well organized and performant.
 One current development paradigm is to use continuous integration and continuous deployment (CI/CD) practices to continually build, test and deploy code changes. Many times large projects will implement a 'prod' or 'production' repository branch to silo the production code base. CI/CD depends on a robust automated testing framework to ensure only quality code will be integrated into the production branch. This allows for more immediate integration of features and fixes into a deployment, keeping the project continually evolving and able to adapt quickly to changing needs. 
 Large projects also depend on well written and properly maintained documentation to track features and details of its codebase. This documentation will also often document production protocols such as branching strategies, code and style guidelines, project workflows and any other information pertinent to the projects production practices. This documentation becomes invaluable when onboarding new developers to the project, saving time and providing a reference for the projects source control protocol and workflow.
 
@@ -288,22 +288,24 @@ TypeScript was created as a means to use JavaScript more similarly to strongly t
 <br/>
 
 ## Q10: Explain how arrays can be manipulated in JavaScript, using examples from the JavaScript programming language
-
 Arrays in Javascript are an indexed collection of objects. An array can be heterogeneous and contain any valid JavaScript datatype:
 
-```javascript const arr = [42, true, "Hello", {Name: "Ted", isCat: true}, [1, 2, 3]]```
+```javascript 
+const arr = [42, true, "Hello", {Name: "Ted", isCat: true}, [1, 2, 3]]
+```
 
-JavaScript has many different ways to work with and manipulate arrays including standard 'for' and 'for... of' loops as well as a huge set of array methods built into the Array prototype. 
+JavaScript has many different ways to work with and manipulate arrays including standard 'for' and 'for... of' loops as well as a huge set of array methods built into the Array prototype.
 
-### Adding/removing from the beginning/end of an array:
-Push and pop are methods that will add or remove the last element from an array, respectively. In addition to removing the last element Pop will return its value. 
+### Adding/removing from the beginning or end of an array:
+`Push` and `pop` are methods that will add or remove the last element from an array, respectively. In addition to removing the last element `pop` will return its value. 
 
-Conversely, unshift and shift are methods that will add or remove the first element from an array, with shift returning the value of the first element. 
+Conversely, `unshift` and `shift` are methods that will add or remove the first element from an array, with `shift` returning the value of the first element. 
 
 These methods mutate the original array. 
 
 ### Concatenation
-Arrays can be concatenated using many means including the concat method or more literally using the spread operator. 
+Arrays can be concatenated using many means including the `concat` method or more literally using the spread operator. The spread operator can be particularly useful when needing to make a copy of an array, ensuring it is entirely decoupled from its original source.
+
 ```javascript
 
 const arrOne = [1, 2, 3, 4, 5]
@@ -317,7 +319,12 @@ console.log([...arrOne, ...arrTwo]);
 ```
 
 ### Loops
-Because Arrays are iterable they can be looped over in many different ways, most commonly with a 'for' loop of a 'for... of' loop. For loops are used when there is a set number iterations needed. The for loop has a three part structure: 1. set up index (let i) 2. set up condition/range that the loop will stop running under (i < myArray.length) 3. Action to take after the code block has run, usually an incrementor or decrementor (i++) Most commonly this can be seen with looping over every element of an array:
+Because Arrays are iterable they can be looped over in many different ways, most commonly with a 'for' loop or 'for... of' loop. 'For' loops are used when there is a set number iterations needed. It has a three part structure: 
+1. Initialize index (let i) 
+2. Define the condition/range under which the loop will continue to iterate (i < myArray.length) 
+3. Action to take after the code block has run, usually an incrementor or decrementor (i++) 
+
+A commone use of a for loop is iterating over every element of an array:
 ```js
 const myArray = [1, 2, 3, 4, 5]
 for (let i = 0; i < myArray.length; i++) {
@@ -331,7 +338,7 @@ for (let i = 0; i < myArray.length; i++) {
 // Element at myArray index 4 is 5
 ``` 
 
-A 'For... of' loop iterates over an array, but instead of working with an index it passes the actually element of each iteration to the code block:
+A 'For... of' loop iterates over an array but instead of working with an index it passes the array element of each iteration to the code block:
 ```js
 const animalArray = ['Emu', 'Wombat', 'Kangaroo', 'Gallah']
 for (const animal of animalArray){
@@ -345,7 +352,7 @@ for (const animal of animalArray){
 // Gallah is an element of the animalArray
 
 ```
-'For... of' loops are particularly useful when working with node collections and the DOM. The queryAll method returns a node list which is array-like, but not an array. Because of this built in array methods like forEach and map will not work, but a 'for... of' or 'for' loop will work. 
+'For... of' loops are particularly useful when working with node collections and the DOM. The queryAll method returns a node list which is array-like, but not an array. Because of this built-in array methods like forEach and map will not work, but a 'for... of' or 'for' loop will work. 
 
 ### Array Methods:
 The Array prototype contains multiple methods that are extremely useful and powerful when working with javascript arrays. Some of the most common array methods are `forEach`, `map`, `filter` and `reduce`. These methods work by chaining them to an array with dot notation and passing in a callback function to define functionality.
@@ -376,7 +383,7 @@ myArray.map(num => num * 10)
 ```
 
 #### filter
-The filter methods callback parameters by position are: the array element at current iteration, the current elements index, the array. Filter returns a new array containing all the arrays elements that evaluated to truthy from the callbacks code block:
+The filter methods callback parameters by position are: the array element at current iteration, the current elements index, the array. Filter returns a new array containing all the arrays elements that evaluate to truthy by the callbacks code block:
 ```js
 const myArray = [1,2,3,4,5,6,7,8,9,10]
 // find all odd numbers:
@@ -437,21 +444,20 @@ There are many different ways to work with and manipulate arrays in JavaScript. 
 <br/>
 
 ## Q11: Explain how objects can be manipulated in JavaScript, using examples from the JavaScript programming language
-
 There are many ways objects can be created and manipulated in JavaScript. Understanding how to access and manipulate an objects properties coupled with a thorough understanding of Object methods can create an invaluable tool with near limitless capabilities when working with JavaScript objects. 
 
 ### Creating a new object:
-Objects can be created in a handful of ways. The two most common are Object constructors or Object literals. Object constructors are a type of factory function that can create a new object with predefined structure. They can include methods as well as take user arguments to assign to values. Note that the `this` keyword must be employed in order to reference the scope of the object being referenced. 
+Objects can be created in a handful of ways. The two most common are Object constructors or Object literals. Object constructors are a type of factory function that can create a new object with predefined structure. They can be useful when many objects with a similar structure are required and can include methods and user arguments to assign values to keys. Note that the `this` keyword must be employed in order to reference the scope of the object being referenced. When creating a new object instance from the object constructor the `new` keyword must be used. 
 ```js
-function createSimpson(name, occupation) {
+function SimpsonsCharacter(name, occupation) {
     this.name = name;
     this.occupation = occupation;
 }
 
-const smithers = createSimpson('Wayland Smithers', 'personal assistant')
+const smithers = new SimpsonsCharacter('Wayland Smithers', 'personal assistant')
 ```
 
-ES6 introduced a shorthand for creating a new object, the Object literal:
+ES6 introduced a more concise way to create a new object, the Object literal:
 ```js
 const lisa = {
     name: 'Lisa Simpson',
@@ -490,7 +496,7 @@ Objects can also have their properties 'frozen' and protect from further manipul
 
 
 ### Rest operator with objects
-An objects contents can be 'unpacked' using the es6 `spread` operator. It works very similarly to using the spread operator with an array:
+An objects contents can be 'unpacked' using the es6 `spread` operator. This can also be useful when needing to make a copy of an object. It works very similarly to using the spread operator with an array:
 ```js
 const scoreCard = {
     gameOneScore: 10,
@@ -564,7 +570,6 @@ console.log(lisaObject)
 <br/>
 
 ## Q12: Explain how JSON can be manipulated in JavaScript, using examples from the JavaScript programming language
-
 JavaScript Object Notation or JSON is a data structure based on JavaScript object syntax. Although JSON closely resembles a JavaScript object it exists as a string and can be used by many different programming languages. Generally for a programming language to use a JSON object it must be deserialized to a native language object. The most common JSON structures in JavaScript resemble either a single object or an array of objects. Once a JSON object is deserialized it may be acted upon, read and manipulated just as a JavaScript object. It is important to note that JSON format requires the object to be wrapped in double quotes. Additionally all keys and strings must be wrapped in double quotes as well for the JSON to work properly. 
 
 
@@ -624,7 +629,10 @@ fs.writeFileSync('./quotes.json', data)
 
 ```
 
-In this example the File System module is used to first read the JSON file into the node app. This incoming data is then deserialized using the JSON.parse(), returning an array with a single element being a JavaScript object version of the JSON object stored in the file. Then, a new ```episodeInfo``` object is created with one key/value pair for season number. This object is then added to our deserialized JSON object using traditional JS object syntax. A new key/value pair for ```name``` is then added directly to the ```episodeInfo``` object contained within the ```quote``` object. Each stage of the ```quote``` object is console logged:  
+In this example the File System module is used to first read the JSON file into the node app. This incoming data is then deserialized using JSON.parse(), returning an array with a single element being a JavaScript object version of the JSON object stored in the file. Then:
+- A new ```episodeInfo``` object is created with one key/value pair for season number. This object is then added to our deserialized JSON object using traditional JS object syntax. 
+- A new key/value pair for ```name``` is then added directly to the ```episodeInfo``` object contained within the ```quote``` object. 
+- Each stage of the ```quote``` object is console logged:  
 
 ![quote console img](./media/Screenshot%202023-07-29%20at%201.02.28%20PM.png)
 
@@ -636,8 +644,7 @@ Finally the quote object is serialized as a JSON object and the original JSON fi
 
 <br/>
 
-## Q13: For the code snippet provided below, write comments for each line of code to explain its functionality. In your comments you must demonstrates your ability to recognize and identify functions, ranges and classes
-
+## Q13: For the code snippet provided below, write comments for each line of code to explain its functionality. In your comments you must demonstrates your ability to recognize and identify functions, ranges and classes  
 ```javascript
 // Construct new parent class Car 
 class Car {
@@ -658,12 +665,12 @@ class Car {
 
 // Define a new class Model that inherits from the Car class. In this scenario one could think of Car as a parent class and Model as a child class of Car class.
 class Model extends Car {
-    // The constructor function is called, parameters must be from parent class (Car) are supplied, as well as any further parameters needed to construct child class (Model)
+    // The constructor function is called, parameters from the parent class (Car) are supplied, as well as any further parameters needed to construct child class (Model)
   constructor(brand, mod) {
     // The super keyword is used to invoke the superclass constructor (Car). This gives access to the Car class constructor within the Model class constructor.
     // by invoking super the Model class has access to the 'brand' property from the Car class constructor. 
     super(brand);
-    // creates a key/value pair to set class key 'model' to value of 'mod' argument
+    // create a key/value pair to set class key 'model' to value of 'mod' argument
     this.model = mod;
   }
     // Create a new Class method called 'show'
@@ -706,11 +713,11 @@ function randomIntFromInterval(min,max) { // min and max included
 // Because not specified with 'let' or 'const', all variables in this code block will be initialized with keyword 'var' by default
 for (model of models) {
 //   On each iteration a random make is chosen from the 'makes' array using the randomIntFromInterval function
-    // because given arguments evaluate to 0 and 2, the returned int will always be between 0 and 2, and in range of the 'makes' array.
+    // because given arguments evaluate to 0 and 2, the returned int will always be between 0 and 2 inclusive, and in range of the 'makes' array.
   make = makes[randomIntFromInterval(0,makes.length-1)]
 
 //   Similarly, on each iteration a random model is chosen from the 'models' array using the randomIntFromInterval function
-    // because given arguments evaluate to 0 and 2, the returned int will always be between 0 and 2
+    // because given arguments evaluate to 0 and 2, the returned int will always be between 0 and 2 inclusive
     // This may not be what the developer intended, as it is pulling models from an array of 40 elements, but will only ever access the first three elements of that array: 1980, 1981, 1982
     // If the dev wanted to pull from all 40 elements, they could replace the second argument to randomIntFromInterval with 'models.length-1' to achieve a range from 0-39
     model = models[randomIntFromInterval(0,makes.length-1)]
@@ -763,4 +770,3 @@ for (model of models) {
 // I have a Holden, it was made in 1982
 // I have a Holden, it was made in 1980
 ```
-individual
