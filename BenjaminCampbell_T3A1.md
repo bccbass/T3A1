@@ -228,7 +228,8 @@ console.log(true + 'hello world')
 // expected result: truehello world
 ```
 
-JavaScript leverages type coercion in conditional statements by making available both the loose equality operator (==) and the strict equality operator (===) when comparing values. The loose equality operator will attempt to coerce the type of both values when comparing them in a good faith effort to try to find equivalency. The strict equality operator will not coerce type, returning a more literal and exact comparison:
+JavaScript leverages type coercion in conditional statements by making available both the loose equality operator `==` and the strict equality operator `===` when comparing values. The loose equality operator will attempt to coerce the type of both values when comparing them in a good faith effort to try to find equivalency. The strict equality operator will not coerce type, returning a more literal and exact comparison:
+	
 ```javascript
 console.log(5 == '5')
 // expected result: true 
