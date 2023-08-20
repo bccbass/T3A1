@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e07e9f62ea6a6d05",
+        "id": "be9fe2cc6c19c608",
         "type": "tabs",
         "children": [
           {
-            "id": "29fc3822b953fd68",
+            "id": "e91d5dfa9f82e44c",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -138,7 +138,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "29fc3822b953fd68",
+  "active": "e91d5dfa9f82e44c",
   "lastOpenFiles": [
     "BenjaminCampbell_T3A1.md"
   ]
